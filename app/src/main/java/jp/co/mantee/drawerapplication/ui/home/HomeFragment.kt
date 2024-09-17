@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import jp.co.mantee.drawerapplication.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -30,6 +30,15 @@ class HomeFragment : Fragment() {
 
         homeViewModel.text.observe(viewLifecycleOwner) {
         }
+
+        val items = 0.until(100).map {
+            ItemData("Title $it", "Subtitle $it", 0)
+        }
+
+        val recyclerView = binding.recyclerView
+        recyclerView.adapter = MyRecycleAdapter(items)
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
         return root
     }
 
